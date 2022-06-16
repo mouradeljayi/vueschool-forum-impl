@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import sourceData from '@/data.json'
 
-import PageHome from '@/components/PageHome'
-import PageThreadShow from '@/components/PageThreadShow'
-import PageNotFound from '@/components/PageNotFound'
+import PageHome from '@/pages/PageHome'
+import PageThreadShow from '@/pages/PageThreadShow'
+import PageNotFound from '@/pages/PageNotFound'
+
 
 
 const routes = [
