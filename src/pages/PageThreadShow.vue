@@ -4,17 +4,7 @@
 
         <post-list :posts="threadPosts"/>
 
-        <div class="col-full">
-          <form @submit.prevent="addPost">
-            <div class="form-group">
-              <textarea v-model="newPostText" class="form-input" cols="30" rows="10"></textarea>
-            </div>
-            
-            <div class="form-actions">
-              <button class="btn-blue ">Submit post</button>
-            </div>
-          </form>
-        </div>
+        <post-editor @save="addPost"/>
     </div>
  
 </template>
@@ -22,11 +12,13 @@
 <script>
 import sourceData from '@/data.json'
 import PostList from '@/components/PostList.vue'
+import PostEditor from '@/components/PostEditor.vue'
 export default {
     name: 'PageThreadShow',
     components: {
-      PostList
-    },
+    PostList,
+    PostEditor
+},
     props: {
         id: {
             required: true,
@@ -37,7 +29,6 @@ export default {
       return {
         threads: sourceData.threads,
         posts: sourceData.posts,
-        newPostText: ''
     }
   },
   computed : {
@@ -50,20 +41,18 @@ export default {
     }
   },
   methods: {
-    addPost() {
-      const postId = 'aaa' + Math.random()
-      const post = {
-        id: postId,
-        text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.id,
-        userId: "u4r8XCziZEWEXsj2UIKNHBoDh0n2"
-      }
-      this.posts.push(post)
-      this.thread.posts.push(postId)
-      this.newPostText = ""
-    }
-  }
+        addPost(eventData) {
+        
+          const post = {
+              ...eventData.post,
+              threadId: this.id,
+          }
+          this.posts.push(post)
+          this.thread.posts.push(post.id)
+          }
+  },
+       
+ 
   
 }
 </script>

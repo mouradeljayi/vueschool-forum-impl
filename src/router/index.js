@@ -4,6 +4,8 @@ import sourceData from '@/data.json'
 import PageHome from '@/pages/PageHome'
 import PageThreadShow from '@/pages/PageThreadShow'
 import PageNotFound from '@/pages/PageNotFound'
+import PageForum from '@/pages/PageForum'
+import PageCategory from '@/pages/PageCategory'
 
 
 
@@ -12,6 +14,18 @@ const routes = [
         path: '/',
         component: PageHome,
         name: 'Home'
+    },
+    {
+        path: '/forum/:id',
+        component: PageForum,
+        name: 'Forum',
+        props: true,
+    },
+    {
+        path: '/category/:id',
+        component: PageCategory,
+        name: 'Category',
+        props: true,
     },
     {
         path: '/thread/:id',

@@ -17,7 +17,7 @@
             </div>
 
             <div class="post-date text-faded">
-              {{ post.publishedAt }}
+              <AppDate :timestamp="post.publishedAt" />
             </div>
             </div>
             
@@ -28,6 +28,7 @@
 <script>
 import sourceData from '@/data.json'
 export default {
+ 
     props: {
         posts: {
             required: true,
@@ -39,11 +40,12 @@ export default {
       users: sourceData.users
     }
   },
-    methods: {
+  methods: {
      userById (userId) {
         return this.users.find(p => p.id === userId)
-    }
-  }
+    },
+    
+  },
 }
 </script>
 
