@@ -29,7 +29,6 @@
 
 <script>
 export default {
-
     props: {
         forums: {
             required: true,
