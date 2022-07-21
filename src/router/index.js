@@ -6,6 +6,7 @@ import PageThreadShow from '@/pages/PageThreadShow'
 import PageNotFound from '@/pages/PageNotFound'
 import PageForum from '@/pages/PageForum'
 import PageCategory from '@/pages/PageCategory'
+import PageProfile from '@/pages/PageProfile'
 
 
 
@@ -26,6 +27,11 @@ const routes = [
         component: PageCategory,
         name: 'Category',
         props: true,
+    },
+    {
+        path: '/me',
+        component: PageProfile,
+        name: 'Profile',
     },
     {
         path: '/thread/:id',
