@@ -3,6 +3,7 @@ import sourceData from '@/data.json'
 
 import PageHome from '@/pages/PageHome'
 import PageThreadShow from '@/pages/PageThreadShow'
+import ThreadCreate from '@/pages/ThreadCreate'
 import PageNotFound from '@/pages/PageNotFound'
 import PageForum from '@/pages/PageForum'
 import PageCategory from '@/pages/PageCategory'
@@ -59,6 +60,12 @@ const routes = [
                 })
             }
         }
+    },
+    {
+        path: '/forum/:forumId/thread/create',
+        name: 'ThreadCreate',
+        component: ThreadCreate,
+        props: true
     },
     { 
         path: '/:pathMatch(.*)*', 
