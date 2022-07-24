@@ -2,55 +2,34 @@
     <div class="col-full push-top">
         <h1>Create new thread in <i>{{ forum.name }}</i></h1>
 
-        <form @submit.prevent="save">
-            <div class="form-group">
-                <label for="thread_title">Title:</label>
-                <input v-model="title" type="text" name="title" id="thread_title" class="form-input">
-            </div>
-
-            <div class="form-group">
-                <label for="thread_content">Content:</label>
-                <textarea v-model="text" rows="8" cols="140" id="thread_content" class="form-input" name="content"></textarea>
-            </div>
-
-            <div class="btn-group">
-                <button @click="cancel" class="btn btn-ghost">Cancel</button>
-                <button class="btn btn-blue" type="submit" name="Publish">Publish</button>
-            </div>
-        </form>
+        <ThreadEditor @save="save" @cancel="cancel"/>
     </div>
 </template>
 
 <script>
+import ThreadEditor from '@/components/ThreadEditor.vue'
 export default {
     props: {
-        forumId: {type: String, required: true}
+        forumId: { type: String, required: true }
     },
     computed: {
         forum() {
-            return this.$store.state.forums.find(
-                forum => forum.id === this.forumId
-            )
-        }
-    },
-    data() {
-        return {
-            title: '',
-            text: ''
+            return this.$store.state.forums.find(forum => forum.id === this.forumId);
         }
     },
     methods: {
-        async save() {
-            const thread = await this.$store.dispatch('createThread', {
+        async save({ title, text }) {
+            const thread = await this.$store.dispatch("createThread", {
                 forumId: this.forum.id,
-                title: this.title,
-                text: this.text
-            })
-            this.$router.push({ name: 'ThreadShow', params: {id: thread.id}})
-        }, 
+                title,
+                text
+            });
+            this.$router.push({ name: "ThreadShow", params: { id: thread.id } });
+        },
         cancel() {
-            this.$router.push({name: 'Forum', params: {id: this.forum.id}})
+            this.$router.push({ name: "Forum", params: { id: this.forum.id } });
         }
-    }
+    },
+    components: { ThreadEditor }
 }
 </script>
